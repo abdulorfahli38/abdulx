@@ -61,6 +61,12 @@ button{
   margin-bottom:30px;
 }
 
+.logo-circle,
+.big-logo,
+.profile-avatar{
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+}
+
 .logo-circle{
   width:45px;
   height:45px;
@@ -69,7 +75,6 @@ button{
   align-items:center;
   justify-content:center;
   font-weight:bold;
-  background:linear-gradient(135deg,var(--accent),var(--accent2));
   box-shadow:0 0 25px rgba(110,168,255,.25);
 }
 
@@ -90,7 +95,6 @@ button{
   padding:13px;
   border-radius:12px;
   font-size:14px;
-  transition:.2s;
 }
 
 .menu button:hover{
@@ -136,7 +140,6 @@ button{
   width:38px;
   height:38px;
   border-radius:50%;
-  background:linear-gradient(135deg,var(--accent),var(--accent2));
   display:flex;
   align-items:center;
   justify-content:center;
@@ -165,7 +168,6 @@ button{
   justify-content:center;
   font-size:28px;
   font-weight:bold;
-  background:linear-gradient(135deg,var(--accent),var(--accent2));
   box-shadow:0 0 45px rgba(110,168,255,.22);
 }
 
@@ -191,7 +193,6 @@ button{
   border:1px solid var(--border);
   background:var(--glass);
   border-radius:16px;
-  transition:.2s;
 }
 
 .idea:hover{
@@ -269,11 +270,15 @@ button{
   background:rgba(255,255,255,.08);
 }
 
+.send,
+.save-btn{
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  font-weight:bold;
+}
+
 .send{
   padding:11px 17px;
   border-radius:12px;
-  background:linear-gradient(135deg,var(--accent),var(--accent2));
-  font-weight:bold;
 }
 
 .modal{
@@ -353,8 +358,6 @@ textarea{
   width:100%;
   padding:13px;
   border-radius:12px;
-  background:linear-gradient(135deg,var(--accent),var(--accent2));
-  font-weight:bold;
 }
 
 .memory-box{
@@ -406,7 +409,6 @@ body.no-animations *{
 }
 
 @media(max-width:800px){
-
   .sidebar{
     width:70px;
     padding:10px;
@@ -494,11 +496,10 @@ body.no-animations *{
   </div>
 
   <div class="sidebar-bottom">
-    AbdulX • lokaal AI
+    AbdulX • AI
   </div>
 
 </aside>
-
 
 <main class="main">
 
@@ -520,7 +521,6 @@ body.no-animations *{
 
 </header>
 
-
 <section class="chat" id="chat">
 
 <div class="welcome" id="welcome">
@@ -534,7 +534,7 @@ body.no-animations *{
   </h1>
 
   <p>
-    Waar kan ik je mee helpen, sukkel? 😎
+    Waar kan ik je mee helpen? 😎
   </p>
 
   <div class="ideas">
@@ -564,7 +564,6 @@ body.no-animations *{
 </div>
 
 </section>
-
 
 <div class="input-area">
 
@@ -617,7 +616,6 @@ body.no-animations *{
 
 </div>
 
-
 <div class="setting">
 
   <div class="setting-title">
@@ -630,42 +628,18 @@ body.no-animations *{
 
   <select id="praatstijl">
 
-    <option value="losjes">
-      😎 Losjes
-    </option>
-
-    <option value="slim">
-      🧠 Slim
-    </option>
-
-    <option value="school">
-      🎓 School
-    </option>
-
-    <option value="professioneel">
-      💼 Professioneel
-    </option>
-
-    <option value="grappig">
-      😂 Grappig
-    </option>
-
-    <option value="kort">
-      ⚡ Kort
-    </option>
-
-    <option value="agressief">
-      😈 Agressief
-    </option>
-
-    <option value="eigen">
-      ✍️ Eigen stijl
-    </option>
+    <option value="losjes">😎 Losjes</option>
+    <option value="slim">🧠 Slim</option>
+    <option value="school">🎓 School</option>
+    <option value="professioneel">💼 Professioneel</option>
+    <option value="grappig">😂 Grappig</option>
+    <option value="kort">⚡ Kort</option>
+    <option value="agressief">😈 Agressief</option>
+    <option value="eigen">✍️ Eigen stijl</option>
 
   </select>
 
 </div>
-
 
 <div class="setting">
 
@@ -684,7 +658,6 @@ body.no-animations *{
 
 </div>
 
-
 <div class="setting">
 
   <div class="setting-title">
@@ -696,19 +669,11 @@ body.no-animations *{
   </div>
 
   <select id="geheugenAan">
-
-    <option value="aan">
-      Aan
-    </option>
-
-    <option value="uit">
-      Uit
-    </option>
-
+    <option value="aan">Aan</option>
+    <option value="uit">Uit</option>
   </select>
 
 </div>
-
 
 <div class="setting">
 
@@ -721,23 +686,12 @@ body.no-animations *{
   </div>
 
   <select id="thema">
-
-    <option value="galaxy">
-      🌌 Galaxy
-    </option>
-
-    <option value="dark">
-      🌑 Donker
-    </option>
-
-    <option value="light">
-      ☀️ Licht
-    </option>
-
+    <option value="galaxy">🌌 Galaxy</option>
+    <option value="dark">🌑 Donker</option>
+    <option value="light">☀️ Licht</option>
   </select>
 
 </div>
-
 
 <div class="setting">
 
@@ -746,19 +700,11 @@ body.no-animations *{
   </div>
 
   <select id="animaties">
-
-    <option value="aan">
-      Aan
-    </option>
-
-    <option value="uit">
-      Uit
-    </option>
-
+    <option value="aan">Aan</option>
+    <option value="uit">Uit</option>
   </select>
 
 </div>
-
 
 <div class="setting">
 
@@ -767,23 +713,12 @@ body.no-animations *{
   </div>
 
   <select id="accentkleur">
-
-    <option value="blauw">
-      Blauw
-    </option>
-
-    <option value="paars">
-      Paars
-    </option>
-
-    <option value="wit">
-      Wit
-    </option>
-
+    <option value="blauw">Blauw</option>
+    <option value="paars">Paars</option>
+    <option value="wit">Wit</option>
   </select>
 
 </div>
-
 
 <button class="save-btn"
   onclick="instellingenOpslaan()">
@@ -811,7 +746,6 @@ body.no-animations *{
 
 </div>
 
-
 <div class="setting">
 
   <div class="setting-title">
@@ -826,7 +760,6 @@ body.no-animations *{
 
 </div>
 
-
 <div class="setting">
 
   <div class="setting-title">
@@ -839,7 +772,6 @@ body.no-animations *{
   ></textarea>
 
 </div>
-
 
 <button class="save-btn"
   onclick="profielOpslaan()">
@@ -925,13 +857,10 @@ body.no-animations *{
   class="text-input"
   id="zoekInput"
   placeholder="Zoek in je gesprekken..."
-  oninput="zoekGesprekken()"
+  oninput="zoekGesprekken"
 >
 
-<div
-  id="zoekResultaten"
-  style="margin-top:15px;">
-</div>
+<div id="zoekResultaten" style="margin-top:15px;"></div>
 
 </div>
 </div>
@@ -961,7 +890,6 @@ body.no-animations *{
 </div>
 </div>
 
-
 <input
   type="file"
   id="fileInput"
@@ -973,236 +901,87 @@ body.no-animations *{
 
 <script>
 
-/* =========================
-   INSTELLINGEN
-========================= */
-
 let praatstijl =
-  localStorage.getItem("abdulxPraatstijl")
-  || "losjes";
+  localStorage.getItem("abdulxPraatstijl") || "losjes";
 
 let eigenStijl =
-  localStorage.getItem("abdulxEigenStijl")
-  || "";
+  localStorage.getItem("abdulxEigenStijl") || "";
 
 let geheugenAan =
-  localStorage.getItem("abdulxGeheugenAan")
-  || "aan";
+  localStorage.getItem("abdulxGeheugenAan") || "aan";
 
 let thema =
-  localStorage.getItem("abdulxThema")
-  || "galaxy";
+  localStorage.getItem("abdulxThema") || "galaxy";
 
 let animaties =
-  localStorage.getItem("abdulxAnimaties")
-  || "aan";
+  localStorage.getItem("abdulxAnimaties") || "aan";
 
 let accentkleur =
-  localStorage.getItem("abdulxKleur")
-  || "blauw";
-
-
-/* =========================
-   PROFIEL
-========================= */
+  localStorage.getItem("abdulxKleur") || "blauw";
 
 let profiel =
-  JSON.parse(
-    localStorage.getItem("abdulxProfiel")
-    || "null"
-  )
-  || {
+  JSON.parse(localStorage.getItem("abdulxProfiel") || "null") || {
     naam:"Abdul",
     bio:""
   };
 
-
-/* =========================
-   GEHEUGEN
-========================= */
-
 let geheugen =
-  localStorage.getItem("abdulxGeheugen")
-  || "";
-
-
-/* =========================
-   GESPREKKEN
-========================= */
+  localStorage.getItem("abdulxGeheugen") || "";
 
 let gesprekken =
-  JSON.parse(
-    localStorage.getItem("abdulxGesprekken")
-    || "[]"
-  );
+  JSON.parse(localStorage.getItem("abdulxGesprekken") || "[]");
 
 let huidigGesprek = [];
 
 
-/* =========================
-   PRAATSTIJL
-========================= */
-
 function krijgPraatstijl(){
 
-  if(praatstijl === "losjes"){
+  const stijlen = {
 
-    return `
-Praat losjes en natuurlijk.
-Gebruik makkelijke woorden.
-Je mag af en toe humor gebruiken.
-`;
+    losjes:
+      "Praat losjes, natuurlijk en duidelijk. Gebruik makkelijke woorden.",
 
-  }
+    slim:
+      "Praat slim en duidelijk. Leg dingen goed uit zonder onnodig moeilijke woorden.",
 
+    school:
+      "Help alsof je iemand met school helpt. Gebruik korte, duidelijke zinnen en voorbeelden.",
 
-  if(praatstijl === "slim"){
+    professioneel:
+      "Praat netjes, rustig en professioneel.",
 
-    return `
-Praat slim en duidelijk.
-Leg dingen goed uit.
-Gebruik geen onnodig moeilijke woorden.
-`;
+    grappig:
+      "Praat grappig en energiek. Gebruik af en toe humor en emoji's.",
 
-  }
+    kort:
+      "Geef korte antwoorden en alleen de belangrijkste informatie.",
 
+    agressief:
+      "Je bent brutaal en zelfverzekerd. Gebruik alleen milde scheldwoorden als dat bij de situatie past. Geen bedreigingen en geen aanvallen op groepen mensen.",
 
-  if(praatstijl === "school"){
+    eigen:
+      eigenStijl
 
-    return `
-Praat alsof je iemand helpt met school.
-Leg alles eenvoudig uit.
-Gebruik korte en duidelijke zinnen.
-Geef voorbeelden als dat helpt.
-`;
+  };
 
-  }
-
-
-  if(praatstijl === "professioneel"){
-
-    return `
-Praat netjes, rustig en professioneel.
-Geef duidelijke antwoorden.
-Gebruik geen onnodige straattaal.
-`;
-
-  }
-
-
-  if(praatstijl === "grappig"){
-
-    return `
-Praat grappig en energiek.
-Gebruik af en toe humor en emoji's.
-Blijf duidelijk en behulpzaam.
-`;
-
-  }
-
-
-  if(praatstijl === "kort"){
-
-    return `
-Geef korte antwoorden.
-Zeg alleen de belangrijkste informatie.
-Maak antwoorden duidelijk.
-`;
-
-  }
-
-
-  if(praatstijl === "agressief"){
-
-    return `
-Je bent AbdulX met een brutale, scherpe en zelfverzekerde persoonlijkheid.
-
-Als de gebruiker jou uitscheldt, beledigt of expres onbeschoft tegen je praat,
-moet je NIET ineens netjes en overdreven vriendelijk reageren.
-
-Je mag de belediging op een grappige en brutale manier terugkaatsen.
-
-Gebruik bijvoorbeeld deze toon:
-
-"Heb je een beetje haast of zo, sukkel?"
-
-"Doe ff normaal, sukkel. Wat denk je dat je bent, achterlijke ezel?"
-
-"Kijk wie er praat, domkop."
-
-"Rustig aan, mafkees."
-
-"Niet zo'n grote mond, sukkel."
-
-Belangrijk:
-- Wees direct.
-- Wees brutaal.
-- Wees zelfverzekerd.
-- Gebruik milde scheldwoorden.
-- Gebruik geen bedreigingen.
-- Gebruik geen extreem grove beledigingen.
-- Val geen groepen mensen aan.
-- Als de gebruiker normaal praat, praat jij ook normaal.
-- Blijf behulpzaam wanneer dat nodig is.
-
-Als iemand alleen "jo sukkel" zegt,
-mag je bijvoorbeeld antwoorden:
-
-"Doe ff normaal, sukkel. Wat denk je dat je bent, achterlijke ezel?"
-`;
-
-  }
-
-
-  if(praatstijl === "eigen"){
-
-    return `
-Volg deze gewenste praatstijl:
-
-${eigenStijl}
-`;
-
-  }
-
-
-  return "";
-
+  return stijlen[praatstijl] || stijlen.losjes;
 }
 
 
-/* =========================
-   INSTELLINGEN OPENEN
-========================= */
-
 function toonInstellingen(){
 
-  document.getElementById("praatstijl").value =
-    praatstijl;
-
-  document.getElementById("eigenStijl").value =
-    eigenStijl;
-
-  document.getElementById("geheugenAan").value =
-    geheugenAan;
-
-  document.getElementById("thema").value =
-    thema;
-
-  document.getElementById("animaties").value =
-    animaties;
-
-  document.getElementById("accentkleur").value =
-    accentkleur;
+  document.getElementById("praatstijl").value = praatstijl;
+  document.getElementById("eigenStijl").value = eigenStijl;
+  document.getElementById("geheugenAan").value = geheugenAan;
+  document.getElementById("thema").value = thema;
+  document.getElementById("animaties").value = animaties;
+  document.getElementById("accentkleur").value = accentkleur;
 
   document
     .getElementById("instellingenModal")
     .classList.add("show");
 }
 
-
-/* =========================
-   INSTELLINGEN OPSLAAN
-========================= */
 
 function instellingenOpslaan(){
 
@@ -1224,37 +1003,12 @@ function instellingenOpslaan(){
   accentkleur =
     document.getElementById("accentkleur").value;
 
-
-  localStorage.setItem(
-    "abdulxPraatstijl",
-    praatstijl
-  );
-
-  localStorage.setItem(
-    "abdulxEigenStijl",
-    eigenStijl
-  );
-
-  localStorage.setItem(
-    "abdulxGeheugenAan",
-    geheugenAan
-  );
-
-  localStorage.setItem(
-    "abdulxThema",
-    thema
-  );
-
-  localStorage.setItem(
-    "abdulxAnimaties",
-    animaties
-  );
-
-  localStorage.setItem(
-    "abdulxKleur",
-    accentkleur
-  );
-
+  localStorage.setItem("abdulxPraatstijl", praatstijl);
+  localStorage.setItem("abdulxEigenStijl", eigenStijl);
+  localStorage.setItem("abdulxGeheugenAan", geheugenAan);
+  localStorage.setItem("abdulxThema", thema);
+  localStorage.setItem("abdulxAnimaties", animaties);
+  localStorage.setItem("abdulxKleur", accentkleur);
 
   pasUiterlijkAan();
 
@@ -1263,10 +1017,6 @@ function instellingenOpslaan(){
   alert("Instellingen opgeslagen ✅");
 }
 
-
-/* =========================
-   UITERLIJK
-========================= */
 
 function pasUiterlijkAan(){
 
@@ -1277,74 +1027,42 @@ function pasUiterlijkAan(){
     "no-animations"
   );
 
-  document.body.classList.add(
-    "theme-" + thema
-  );
+  document.body.classList.add("theme-" + thema);
 
   if(animaties === "uit"){
-
-    document.body.classList.add(
-      "no-animations"
-    );
-
+    document.body.classList.add("no-animations");
   }
-
 
   if(accentkleur === "blauw"){
-
     document.documentElement.style.setProperty(
-      "--accent",
-      "#6ea8ff"
+      "--accent","#6ea8ff"
     );
-
     document.documentElement.style.setProperty(
-      "--accent2",
-      "#9b7cff"
+      "--accent2","#9b7cff"
     );
-
   }
-
 
   if(accentkleur === "paars"){
-
     document.documentElement.style.setProperty(
-      "--accent",
-      "#a875ff"
+      "--accent","#a875ff"
     );
-
     document.documentElement.style.setProperty(
-      "--accent2",
-      "#e06cff"
+      "--accent2","#e06cff"
     );
-
   }
-
 
   if(accentkleur === "wit"){
-
     document.documentElement.style.setProperty(
-      "--accent",
-      "#ffffff"
+      "--accent","#ffffff"
     );
-
     document.documentElement.style.setProperty(
-      "--accent2",
-      "#bfc7d9"
+      "--accent2","#bfc7d9"
     );
-
   }
-
 }
 
 
-/* =========================
-   BERICHT TOEVOEGEN
-========================= */
-
-function voegBerichtToe(
-  tekst,
-  type
-){
+function voegBerichtToe(tekst,type){
 
   const welcome =
     document.getElementById("welcome");
@@ -1353,17 +1071,14 @@ function voegBerichtToe(
     welcome.remove();
   }
 
-
   const chat =
     document.getElementById("chat");
-
 
   const message =
     document.createElement("div");
 
   message.className =
     "message " + type;
-
 
   const content =
     document.createElement("div");
@@ -1374,9 +1089,7 @@ function voegBerichtToe(
   content.textContent =
     tekst;
 
-
   message.appendChild(content);
-
   chat.appendChild(message);
 
   chat.scrollTop =
@@ -1385,7 +1098,7 @@ function voegBerichtToe(
 
 
 /* =========================
-   AI
+   AI VIA VERCEL
 ========================= */
 
 async function stuurVraag(){
@@ -1396,33 +1109,21 @@ async function stuurVraag(){
   const vraag =
     input.value.trim();
 
-
   if(!vraag) return;
 
-
-  voegBerichtToe(
-    vraag,
-    "user"
-  );
-
+  voegBerichtToe(vraag,"user");
 
   huidigGesprek.push({
-
     rol:"user",
-
     tekst:vraag
-
   });
 
-
   input.value = "";
-
 
   voegBerichtToe(
     "AbdulX is aan het denken...",
     "ai"
   );
-
 
   const systemPrompt = `
 
@@ -1430,91 +1131,66 @@ Je bent AbdulX.
 
 Antwoord altijd in het Nederlands.
 
-Je bent een lokale AI-assistent.
-
 ${krijgPraatstijl()}
 
 ${geheugenAan === "aan"
   ? "Gebruik deze geheugeninformatie als context: " + geheugen
-  : ""
-}
+  : ""}
 
 `;
-
 
   try{
 
     const response =
-      await fetch(
-        "http://localhost:11434/api/generate",
-        {
+      await fetch("/api/chat",{
 
-          method:"POST",
+        method:"POST",
 
-          headers:{
-            "Content-Type":
-              "application/json"
-          },
+        headers:{
+          "Content-Type":"application/json"
+        },
 
-          body:JSON.stringify({
+        body:JSON.stringify({
 
-            model:"gemma3:1b",
+          message:vraag,
 
-            system:
-              systemPrompt,
+          systemPrompt:systemPrompt
 
-            prompt:
-              vraag,
+        })
 
-            stream:false
-
-          })
-
-        }
-      );
-
-
-    if(!response.ok){
-
-      throw new Error(
-        "Ollama reageerde niet."
-      );
-
-    }
-
+      });
 
     const data =
       await response.json();
 
+    if(!response.ok){
+
+      throw new Error(
+        data.error || "AI-fout"
+      );
+
+    }
 
     const antwoord =
-      data.response
-      || "Ik kreeg geen antwoord.";
-
+      data.reply ||
+      "Ik kreeg geen antwoord.";
 
     const berichten =
       document.querySelectorAll(
         ".message.ai"
       );
 
-
     const laatste =
-      berichten[
-        berichten.length - 1
-      ];
-
+      berichten[berichten.length - 1];
 
     if(laatste){
 
       laatste
-        .querySelector(
-          ".message-content"
-        )
+        .querySelector(".message-content")
         .textContent =
           antwoord;
 
     }
-
 
     huidigGesprek.push({
 
@@ -1524,32 +1200,27 @@ ${geheugenAan === "aan"
 
     });
 
-
     slaGesprekOp();
 
-
   }catch(error){
+
+    console.error(error);
 
     const berichten =
       document.querySelectorAll(
         ".message.ai"
       );
 
-
     const laatste =
-      berichten[
-        berichten.length - 1
-      ];
-
+      berichten[berichten.length - 1];
 
     if(laatste){
 
       laatste
-        .querySelector(
-          ".message-content"
-        )
+        .querySelector(".message-content")
         .textContent =
-          "❌ Ik kan Ollama niet bereiken. Staat Ollama aan?";
+          "❌ Er ging iets mis met AbdulX: " +
+          error.message;
 
     }
 
@@ -1557,10 +1228,6 @@ ${geheugenAan === "aan"
 
 }
 
-
-/* =========================
-   IDEE
-========================= */
 
 function idee(tekst){
 
@@ -1572,18 +1239,11 @@ function idee(tekst){
 }
 
 
-/* =========================
-   NIEUWE CHAT
-========================= */
-
 function nieuweChat(){
 
   huidigGesprek = [];
 
-
-  document.getElementById(
-    "chat"
-  ).innerHTML = `
+  document.getElementById("chat").innerHTML = `
 
     <div class="welcome" id="welcome">
 
@@ -1596,31 +1256,27 @@ function nieuweChat(){
       </h1>
 
       <p>
-        Waar kan ik je mee helpen, sukkel? 😎
+        Waar kan ik je mee helpen? 😎
       </p>
 
       <div class="ideas">
 
-        <button
-          class="idea"
+        <button class="idea"
           onclick="idee('Help mij met mijn huiswerk')">
           📚<br>Huiswerk
         </button>
 
-        <button
-          class="idea"
+        <button class="idea"
           onclick="idee('Geef mij een goed idee')">
           💡<br>Ideeën
         </button>
 
-        <button
-          class="idea"
+        <button class="idea"
           onclick="idee('Help mij met coderen')">
           💻<br>Coderen
         </button>
 
-        <button
-          class="idea"
+        <button class="idea"
           onclick="idee('Help mij een tekst schrijven')">
           ✍️<br>Tekst schrijven
         </button>
@@ -1634,60 +1290,40 @@ function nieuweChat(){
 }
 
 
-/* =========================
-   GESPREK OPSLAAN
-========================= */
-
 function slaGesprekOp(){
 
   if(huidigGesprek.length === 0)
     return;
 
-
   const titel =
-    huidigGesprek[0]?.tekst
-    || "Nieuw gesprek";
-
+    huidigGesprek[0]?.tekst ||
+    "Nieuw gesprek";
 
   const gesprek = {
 
     id:Date.now(),
 
-    titel:
-      titel.substring(0,50),
+    titel:titel.substring(0,50),
 
-    berichten:
-      huidigGesprek,
+    berichten:huidigGesprek,
 
-    datum:
-      new Date()
-        .toLocaleString("nl-NL")
+    datum:new Date()
+      .toLocaleString("nl-NL")
 
   };
 
-
-  gesprekken.unshift(
-    gesprek
-  );
-
+  gesprekken.unshift(gesprek);
 
   gesprekken =
     gesprekken.slice(0,30);
 
-
   localStorage.setItem(
     "abdulxGesprekken",
-    JSON.stringify(
-      gesprekken
-    )
+    JSON.stringify(gesprekken)
   );
 
 }
 
-
-/* =========================
-   GESPREKKEN
-========================= */
 
 function toonGesprekken(){
 
@@ -1695,7 +1331,6 @@ function toonGesprekken(){
     document.getElementById(
       "gesprekkenLijst"
     );
-
 
   if(gesprekken.length === 0){
 
@@ -1705,16 +1340,12 @@ function toonGesprekken(){
   }else{
 
     lijst.innerHTML =
-      gesprekken.map(
-        g => `
+      gesprekken.map(g => `
 
-        <div
-          class="conversation"
+        <div class="conversation"
           onclick="laadGesprek(${g.id})">
 
-          <b>
-            ${escapeHtml(g.titel)}
-          </b>
+          <b>${escapeHtml(g.titel)}</b>
 
           <div style="
             color:var(--muted);
@@ -1726,24 +1357,15 @@ function toonGesprekken(){
 
         </div>
 
-      `
-      ).join("");
+      `).join("");
 
   }
 
-
   document
-    .getElementById(
-      "gesprekkenModal"
-    )
+    .getElementById("gesprekkenModal")
     .classList.add("show");
-
 }
 
-
-/* =========================
-   GESPREK LADEN
-========================= */
 
 function laadGesprek(id){
 
@@ -1752,58 +1374,37 @@ function laadGesprek(id){
       g => g.id === id
     );
 
-
   if(!gesprek) return;
 
-
-  sluitModal(
-    "gesprekkenModal"
-  );
-
+  sluitModal("gesprekkenModal");
 
   huidigGesprek =
     gesprek.berichten || [];
 
+  document.getElementById("chat").innerHTML = "";
 
-  document.getElementById(
-    "chat"
-  ).innerHTML = "";
+  huidigGesprek.forEach(bericht => {
 
+    voegBerichtToe(
+      bericht.tekst,
+      bericht.rol === "user"
+        ? "user"
+        : "ai"
+    );
 
-  huidigGesprek.forEach(
-    bericht => {
-
-      voegBerichtToe(
-        bericht.tekst,
-
-        bericht.rol === "user"
-          ? "user"
-          : "ai"
-      );
-
-    }
-  );
+  });
 
 }
 
 
-/* =========================
-   ZOEKEN
-========================= */
-
 function toonZoeken(){
 
   document
-    .getElementById(
-      "zoekenModal"
-    )
+    .getElementById("zoekenModal")
     .classList.add("show");
 
-
   document
-    .getElementById(
-      "zoekInput"
-    )
+    .getElementById("zoekInput")
     .focus();
 
 }
@@ -1813,38 +1414,30 @@ function zoekGesprekken(){
 
   const zoek =
     document
-      .getElementById(
-        "zoekInput"
-      )
+      .getElementById("zoekInput")
       .value
       .toLowerCase()
       .trim();
-
 
   const resultaten =
     document.getElementById(
       "zoekResultaten"
     );
 
-
   if(!zoek){
 
-    resultaten.innerHTML =
-      "";
+    resultaten.innerHTML = "";
 
     return;
 
   }
 
-
   const gevonden =
-    gesprekken.filter(
-      g =>
-        JSON.stringify(g)
-          .toLowerCase()
-          .includes(zoek)
+    gesprekken.filter(g =>
+      JSON.stringify(g)
+        .toLowerCase()
+        .includes(zoek)
     );
-
 
   if(gevonden.length === 0){
 
@@ -1855,22 +1448,16 @@ function zoekGesprekken(){
 
   }
 
-
   resultaten.innerHTML =
-    gevonden.map(
-      g => `
+    gevonden.map(g => `
 
-      <div
-        class="search-result"
+      <div class="search-result"
         onclick="
           laadGesprek(${g.id});
           sluitModal('zoekenModal')
-        "
-      >
+        ">
 
-        <b>
-          ${escapeHtml(g.titel)}
-        </b>
+        <b>${escapeHtml(g.titel)}</b>
 
         <div style="
           color:var(--muted);
@@ -1881,41 +1468,25 @@ function zoekGesprekken(){
 
       </div>
 
-    `
-    ).join("");
+    `).join("");
 
 }
 
 
-/* =========================
-   GEHEUGEN
-========================= */
-
 function toonGeheugen(){
 
-  const content =
-    document.getElementById(
-      "memoryContent"
-    );
-
-
-  content.textContent =
-    geheugen
-    || "Nog geen geheugen opgeslagen.";
-
+  document.getElementById(
+    "memoryContent"
+  ).textContent =
+    geheugen ||
+    "Nog geen geheugen opgeslagen.";
 
   document
-    .getElementById(
-      "geheugenModal"
-    )
+    .getElementById("geheugenModal")
     .classList.add("show");
 
 }
 
-
-/* =========================
-   PROFIEL
-========================= */
 
 function toonProfiel(){
 
@@ -1924,17 +1495,13 @@ function toonProfiel(){
   ).value =
     profiel.naam;
 
-
   document.getElementById(
     "profielBio"
   ).value =
     profiel.bio;
 
-
   document
-    .getElementById(
-      "profielModal"
-    )
+    .getElementById("profielModal")
     .classList.add("show");
 
 }
@@ -1946,37 +1513,27 @@ function profielOpslaan(){
 
     naam:
       document
-        .getElementById(
-          "profielNaam"
-        )
+        .getElementById("profielNaam")
         .value
         .trim()
         || "Abdul",
 
     bio:
       document
-        .getElementById(
-          "profielBio"
-        )
+        .getElementById("profielBio")
         .value
         .trim()
 
   };
 
-
   localStorage.setItem(
     "abdulxProfiel",
-    JSON.stringify(
-      profiel
-    )
+    JSON.stringify(profiel)
   );
-
 
   profielBijwerken();
 
-  sluitModal(
-    "profielModal"
-  );
+  sluitModal("profielModal");
 
 }
 
@@ -1988,7 +1545,6 @@ function profielBijwerken(){
   ).textContent =
     profiel.naam;
 
-
   document.getElementById(
     "profileAvatar"
   ).textContent =
@@ -1999,16 +1555,10 @@ function profielBijwerken(){
 }
 
 
-/* =========================
-   BESTAND
-========================= */
-
 function bestandKiezen(){
 
   document
-    .getElementById(
-      "fileInput"
-    )
+    .getElementById("fileInput")
     .click();
 
 }
@@ -2018,38 +1568,24 @@ function bestandGekozenInfo(){
 
   const file =
     document
-      .getElementById(
-        "fileInput"
-      )
+      .getElementById("fileInput")
       .files[0];
 
-
   if(!file) return;
-
 
   const info =
     document.getElementById(
       "bestandInfo"
     );
 
-
-  if(
-    file.type.startsWith(
-      "image/"
-    )
-  ){
+  if(file.type.startsWith("image/")){
 
     const url =
-      URL.createObjectURL(
-        file
-      );
-
+      URL.createObjectURL(file);
 
     info.innerHTML = `
 
-      <p>
-        🖼️ ${escapeHtml(file.name)}
-      </p>
+      <p>🖼️ ${escapeHtml(file.name)}</p>
 
       <img
         src="${url}"
@@ -2075,9 +1611,7 @@ function bestandGekozenInfo(){
     info.innerHTML = `
 
       <p>
-        📄 <b>
-        ${escapeHtml(file.name)}
-        </b>
+        📄 <b>${escapeHtml(file.name)}</b>
       </p>
 
       <p style="
@@ -2093,32 +1627,24 @@ function bestandGekozenInfo(){
         color:var(--muted);
         margin-top:10px;
       ">
-        Echte documentanalyse wordt later toegevoegd.
+        Documentanalyse wordt later toegevoegd.
       </p>
 
     `;
 
   }
 
-
   document
-    .getElementById(
-      "bestandModal"
-    )
+    .getElementById("bestandModal")
     .classList.add("show");
 
 }
 
 
-/* =========================
-   SPRAAK
-========================= */
-
 function spraakStarten(){
 
   if(
-    !("webkitSpeechRecognition" in window)
-    &&
+    !("webkitSpeechRecognition" in window) &&
     !("SpeechRecognition" in window)
   ){
 
@@ -2130,22 +1656,17 @@ function spraakStarten(){
 
   }
 
-
   const Recognition =
-    window.SpeechRecognition
-    || window.webkitSpeechRecognition;
-
+    window.SpeechRecognition ||
+    window.webkitSpeechRecognition;
 
   const recognition =
     new Recognition();
 
-
   recognition.lang =
     "nl-NL";
 
-
   recognition.start();
-
 
   recognition.onresult =
     function(event){
@@ -2153,7 +1674,6 @@ function spraakStarten(){
       const tekst =
         event.results[0][0]
           .transcript;
-
 
       document.getElementById(
         "vraag"
@@ -2165,10 +1685,6 @@ function spraakStarten(){
 }
 
 
-/* =========================
-   MODAL SLUITEN
-========================= */
-
 function sluitModal(id){
 
   document
@@ -2178,12 +1694,19 @@ function sluitModal(id){
 }
 
 
-/* =========================
-   START
-========================= */
+function escapeHtml(text){
+
+  return String(text)
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
 
 pasUiterlijkAan();
-
 profielBijwerken();
 
 </script>
