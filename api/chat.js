@@ -6,37 +6,44 @@ export default async function handler(req, res) {
   try {
     const { message, systemPrompt } = req.body;
 
-    const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${process.env.OPENROUTER_API_KEY}`
-      },
-      body: JSON.stringify({
-        model: "openai/gpt-oss-20b:free",
-        messages: [
-          {
-            role: "system",
-            content: systemPrompt || "Je bent AbdulX. Antwoord in het Nederlands."
-          },
-          {
-            role: "user",
-            content: message
-          }
-        ]
-      })
-    });
+    const response = await fetch(
+      "https://api.groq.com/openai/v1/chat/completions",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${process.env.GROQ_API_KEY}`
+        },
+        body: JSON.stringify({
+          model: "llama-3.1-8b-instant",
+          messages: [
+            {
+              role: "system",
+              content:
+                systemPrompt ||
+                "Je bent AbdulX, een behulpzame AI. Antwoord altijd in het Nederlands."
+            },
+            {
+              role: "user",
+              content: message
+            }
+          ]
+        })
+      }
+    );
 
     const data = await response.json();
 
     if (!response.ok) {
       return res.status(response.status).json({
-        error: data.error?.message || "OpenRouter fout"
+        error: data.error?.message || "Groq gaf een fout."
       });
     }
 
     return res.status(200).json({
-      reply: data.choices?.[0]?.message?.content || "Geen antwoord ontvangen."
+      reply:
+        data.choices?.[0]?.message?.content ||
+        "Ik kreeg geen antwoord."
     });
 
   } catch (error) {
@@ -45,3 +52,4 @@ export default async function handler(req, res) {
     });
   }
 }
+
