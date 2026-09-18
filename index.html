@@ -1,1 +1,846 @@
-<!DOCTYPE html> <html lang="nl"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>AbdulX</title> <style> :root{ --accent:#6ea8ff; --accent2:#9b7cff; --text:#f5f7ff; --muted:#aeb6c8; --glass:rgba(20,24,38,.72); --border:rgba(255,255,255,.10); --input:rgba(255,255,255,.07); } *{ box-sizing:border-box; margin:0; padding:0; font-family:Arial,Helvetica,sans-serif; } body{ min-height:100vh; color:var(--text); background: radial-gradient(circle at 20% 20%,rgba(90,130,255,.16),transparent 30%), radial-gradient(circle at 80% 80%,rgba(150,90,255,.13),transparent 30%), linear-gradient(135deg,#070912,#0d1020,#080912); overflow:hidden; } button{ border:0; cursor:pointer; color:var(--text); } .app{ display:flex; height:100vh; } .sidebar{ width:260px; background:rgba(8,10,18,.82); border-right:1px solid var(--border); backdrop-filter:blur(18px); padding:20px; display:flex; flex-direction:column; } .logo{ display:flex; align-items:center; gap:12px; margin-bottom:30px; } .logo-circle, .big-logo, .profile-avatar{ background:linear-gradient(135deg,var(--accent),var(--accent2)); } .logo-circle{ width:45px; height:45px; border-radius:14px; display:flex; align-items:center; justify-content:center; font-weight:bold; box-shadow:0 0 25px rgba(110,168,255,.25); } .logo-text{ font-size:20px; font-weight:bold; } .menu{ display:flex; flex-direction:column; gap:8px; } .menu button{ background:transparent; text-align:left; padding:13px; border-radius:12px; font-size:14px; } .menu button:hover{ background:rgba(255,255,255,.07); } .sidebar-bottom{ margin-top:auto; color:var(--muted); font-size:12px; } .main{ flex:1; display:flex; flex-direction:column; min-width:0; } .header{ height:70px; border-bottom:1px solid var(--border); background:rgba(10,12,20,.55); backdrop-filter:blur(18px); display:flex; align-items:center; justify-content:space-between; padding:0 25px; } .header-title{ font-weight:bold; } .profile{ display:flex; align-items:center; gap:10px; cursor:pointer; } .profile-avatar{ width:38px; height:38px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:bold; } .chat{ flex:1; overflow-y:auto; padding:35px; } .welcome{ max-width:850px; margin:70px auto; text-align:center; } .big-logo{ width:85px; height:85px; margin:auto; border-radius:25px; display:flex; align-items:center; justify-content:center; font-size:28px; font-weight:bold; box-shadow:0 0 45px rgba(110,168,255,.22); } .welcome h1{ margin-top:25px; font-size:34px; } .welcome p{ margin-top:10px; color:var(--muted); } .ideas{ margin-top:30px; display:grid; grid-template-columns:repeat(4,1fr); gap:12px; } .idea{ padding:18px; border:1px solid var(--border); background:var(--glass); border-radius:16px; } .idea:hover{ transform:translateY(-2px); border-color:rgba(255,255,255,.2); } .message{ max-width:850px; margin:0 auto 18px; display:flex; } .message.user{ justify-content:flex-end; } .message-content{ max-width:75%; padding:13px 16px; border-radius:17px; line-height:1.5; white-space:pre-wrap; } .user .message-content{ background:linear-gradient(135deg,var(--accent),var(--accent2)); } .ai .message-content{ background:var(--glass); border:1px solid var(--border); } .input-area{ padding:15px 25px 22px; } .input-box{ max-width:900px; margin:auto; display:flex; align-items:center; gap:8px; background:var(--input); border:1px solid var(--border); backdrop-filter:blur(18px); border-radius:18px; padding:8px; } .input-box input{ flex:1; background:transparent; border:0; outline:0; color:var(--text); padding:12px; font-size:15px; } .input-box input::placeholder{ color:var(--muted); } .icon-btn{ width:40px; height:40px; background:transparent; border-radius:12px; font-size:18px; } .icon-btn:hover{ background:rgba(255,255,255,.08); } .send, .save-btn{ background:linear-gradient(135deg,var(--accent),var(--accent2)); font-weight:bold; } .send{ padding:11px 17px; border-radius:12px; } .modal{ position:fixed; inset:0; background:rgba(0,0,0,.65); backdrop-filter:blur(8px); display:none; align-items:center; justify-content:center; z-index:100; padding:20px; } .modal.show{ display:flex; } .modal-box{ width:min(600px,100%); max-height:85vh; overflow-y:auto; background:#111522; border:1px solid var(--border); border-radius:22px; padding:25px; box-shadow:0 20px 70px rgba(0,0,0,.45); } .modal-head{ display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; } .close{ background:transparent; font-size:22px; } .setting{ padding:16px 0; border-bottom:1px solid var(--border); } .setting-title{ font-weight:bold; margin-bottom:8px; } .setting-description{ color:var(--muted); font-size:13px; margin-bottom:12px; } select, textarea, .text-input{ width:100%; background:#1a1f2d; border:1px solid var(--border); color:var(--text); border-radius:12px; padding:12px; outline:none; } textarea{ resize:vertical; min-height:90px; } .save-btn{ margin-top:20px; width:100%; padding:13px; border-radius:12px; } .memory-box{ background:rgba(255,255,255,.05); border:1px solid var(--border); padding:15px; border-radius:14px; margin-top:10px; } .conversation{ padding:13px; border:1px solid var(--border); border-radius:12px; margin-bottom:8px; cursor:pointer; } .conversation:hover{ background:rgba(255,255,255,.06); } .search-result{ padding:13px; border-bottom:1px solid var(--border); } body.theme-light{ --text:#111827; --muted:#5b6474; --glass:rgba(255,255,255,.75); --border:rgba(0,0,0,.10); --input:rgba(255,255,255,.75); background:linear-gradient(135deg,#eef3ff,#ffffff); } body.theme-light .sidebar, body.theme-light .header{ background:rgba(255,255,255,.75); } body.theme-dark{ background:#070707; } body.no-animations *{ transition:none !important; animation:none !important; } @media(max-width:800px){ .sidebar{ width:70px; padding:10px; } .logo-text, .menu span, .sidebar-bottom{ display:none; } .logo{ justify-content:center; } .menu button{ text-align:center; font-size:18px; } .ideas{ grid-template-columns:repeat(2,1fr); } .chat{ padding:20px 12px; } .welcome{ margin:45px auto; } .welcome h1{ font-size:26px; } .message-content{ max-width:90%; } .header{ padding:0 12px; } .input-area{ padding:10px; } } </style> </head> <body class="theme-galaxy"> <div class="app"> <aside class="sidebar"> <div class="logo"> <div class="logo-circle">A.O.</div> <div class="logo-text">AbdulX</div> </div> <div class="menu"> <button onclick="nieuweChat()"> ➕ <span>Nieuwe chat</span> </button> <button onclick="toonZoeken()"> 🔍 <span>Zoeken</span> </button> <button onclick="toonGesprekken()"> 💬 <span>Gesprekken</span> </button> <button onclick="toonGeheugen()"> 🧠 <span>Geheugen</span> </button> <button onclick="toonInstellingen()"> ⚙️ <span>Instellingen</span> </button> </div> <div class="sidebar-bottom"> AbdulX • AI </div> </aside> <main class="main"> <header class="header"> <div class="header-title"> AbdulX </div> <div class="profile" onclick="toonProfiel()"> <span id="profileName">Abdul</span> <div class="profile-avatar" id="profileAvatar"> A </div> </div> </header> <section class="chat" id="chat"> <div class="welcome" id="welcome"> <div class="big-logo"> A.O. </div> <h1> Hallo, ik ben AbdulX 👋 </h1> <p> Waar kan ik je mee helpen? 😎 </p> <div class="ideas"> <button class="idea" onclick="idee('Help mij met mijn huiswerk')"> 📚<br>Huiswerk </button> <button class="idea" onclick="idee('Geef mij een goed idee')"> 💡<br>Ideeën </button> <button class="idea" onclick="idee('Help mij met coderen')"> 💻<br>Coderen </button> <button class="idea" onclick="idee('Help mij een tekst schrijven')"> ✍️<br>Tekst schrijven </button> </div> </div> </section> <div class="input-area"> <div class="input-box"> <button class="icon-btn" onclick="bestandKiezen()"> 📎 </button> <button class="icon-btn" onclick="spraakStarten()"> 🎤 </button> <input id="vraag" type="text" placeholder="Typ je bericht..." onkeydown="if(event.key==='Enter') stuurVraag()" > <button class="send" onclick="stuurVraag()"> Verstuur </button> </div> </div> </main> </div> <!-- INSTELLINGEN --> <div class="modal" id="instellingenModal"> <div class="modal-box"> <div class="modal-head"> <h2>⚙️ Instellingen</h2> <button class="close" onclick="sluitModal('instellingenModal')"> ✕ </button> </div> <div class="setting"> <div class="setting-title"> 🗣️ Praatstijl </div> <div class="setting-description"> Kies hoe AbdulX met mensen praat. </div> <select id="praatstijl"> <option value="losjes">😎 Losjes</option> <option value="slim">🧠 Slim</option> <option value="school">🎓 School</option> <option value="professioneel">💼 Professioneel</option> <option value="grappig">😂 Grappig</option> <option value="kort">⚡ Kort</option> <option value="agressief">😈 Agressief</option> <option value="eigen">✍️ Eigen stijl</option> </select> </div> <div class="setting"> <div class="setting-title"> ✍️ Eigen stijl </div> <div class="setting-description"> Schrijf zelf hoe AbdulX moet praten. </div> <textarea id="eigenStijl" placeholder="Bijvoorbeeld: Praat kort, grappig en duidelijk." ></textarea> </div> <div class="setting"> <div class="setting-title"> 🧠 Geheugen </div> <div class="setting-description"> Laat AbdulX informatie onthouden. </div> <select id="geheugenAan"> <option value="aan">Aan</option> <option value="uit">Uit</option> </select> </div> <div class="setting"> <div class="setting-title"> 🎨 Thema </div> <div class="setting-description"> Kies het uiterlijk. </div> <select id="thema"> <option value="galaxy">🌌 Galaxy</option> <option value="dark">🌑 Donker</option> <option value="light">☀️ Licht</option> </select> </div> <div class="setting"> <div class="setting-title"> ✨ Animaties </div> <select id="animaties"> <option value="aan">Aan</option> <option value="uit">Uit</option> </select> </div> <div class="setting"> <div class="setting-title"> 🎨 Accentkleur </div> <select id="accentkleur"> <option value="blauw">Blauw</option> <option value="paars">Paars</option> <option value="wit">Wit</option> </select> </div> <button class="save-btn" onclick="instellingenOpslaan()"> 💾 Opslaan </button> </div> </div> <!-- PROFIEL --> <div class="modal" id="profielModal"> <div class="modal-box"> <div class="modal-head"> <h2>👤 Profiel</h2> <button class="close" onclick="sluitModal('profielModal')"> ✕ </button> </div> <div class="setting"> <div class="setting-title"> Naam </div> <input class="text-input" id="profielNaam" placeholder="Jouw naam" > </div> <div class="setting"> <div class="setting-title"> Bio </div> <textarea id="profielBio" placeholder="Iets over jezelf..." ></textarea> </div> <button class="save-btn" onclick="profielOpslaan()"> 💾 Opslaan </button> </div> </div> <!-- GEHEUGEN --> <div class="modal" id="geheugenModal"> <div class="modal-box"> <div class="modal-head"> <h2>🧠 Geheugen</h2> <button class="close" onclick="sluitModal('geheugenModal')"> ✕ </button> </div> <p style="color:var(--muted);font-size:14px;"> Dit is wat AbdulX momenteel onthoudt: </p> <div class="memory-box" id="memoryContent"> Nog geen geheugen opgeslagen. </div> </div> </div> <!-- GESPREKKEN --> <div class="modal" id="gesprekkenModal"> <div class="modal-box"> <div class="modal-head"> <h2>💬 Gesprekken</h2> <button class="close" onclick="sluitModal('gesprekkenModal')"> ✕ </button> </div> <div id="gesprekkenLijst"> Nog geen gesprekken. </div> </div> </div> <!-- ZOEKEN --> <div class="modal" id="zoekenModal"> <div class="modal-box"> <div class="modal-head"> <h2>🔍 Zoeken</h2> <button class="close" onclick="sluitModal('zoekenModal')"> ✕ </button> </div> <input class="text-input" id="zoekInput" placeholder="Zoek in je gesprekken..." oninput="zoekGesprekken" > <div id="zoekResultaten" style="margin-top:15px;"></div> </div> </div> <!-- BESTAND --> <div class="modal" id="bestandModal"> <div class="modal-box"> <div class="modal-head"> <h2>📎 Bestand</h2> <button class="close" onclick="sluitModal('bestandModal')"> ✕ </button> </div> <div id="bestandInfo"> Geen bestand gekozen. </div> </div> </div> <input type="file" id="fileInput" accept="image/*,.txt,.pdf,.doc,.docx" style="display:none" onchange="bestandGekozenInfo()" > <script> let praatstijl = localStorage.getItem("abdulxPraatstijl") || "losjes"; let eigenStijl = localStorage.getItem("abdulxEigenStijl") || ""; let geheugenAan = localStorage.getItem("abdulxGeheugenAan") || "aan"; let thema = localStorage.getItem("abdulxThema") || "galaxy"; let animaties = localStorage.getItem("abdulxAnimaties") || "aan"; let accentkleur = localStorage.getItem("abdulxKleur") || "blauw"; let profiel = JSON.parse(localStorage.getItem("abdulxProfiel") || "null") || { naam:"Abdul", bio:"" }; let geheugen = localStorage.getItem("abdulxGeheugen") || ""; let gesprekken = JSON.parse(localStorage.getItem("abdulxGesprekken") || "[]"); let huidigGesprek = []; function krijgPraatstijl(){ const stijlen = { losjes: "Praat losjes, natuurlijk en duidelijk. Gebruik makkelijke woorden.", slim: "Praat slim en duidelijk. Leg dingen goed uit zonder onnodig moeilijke woorden.", school: "Help alsof je iemand met school helpt. Gebruik korte, duidelijke zinnen en voorbeelden.", professioneel: "Praat netjes, rustig en professioneel.", grappig: "Praat grappig en energiek. Gebruik af en toe humor en emoji's.", kort: "Geef korte antwoorden en alleen de belangrijkste informatie.", agressief: "Je bent brutaal en zelfverzekerd. Gebruik alleen milde scheldwoorden als dat bij de situatie past. Geen bedreigingen en geen aanvallen op groepen mensen.", eigen: eigenStijl }; return stijlen[praatstijl] || stijlen.losjes; } function toonInstellingen(){ document.getElementById("praatstijl").value = praatstijl; document.getElementById("eigenStijl").value = eigenStijl; document.getElementById("geheugenAan").value = geheugenAan; document.getElementById("thema").value = thema; document.getElementById("animaties").value = animaties; document.getElementById("accentkleur").value = accentkleur; document .getElementById("instellingenModal") .classList.add("show"); } function instellingenOpslaan(){ praatstijl = document.getElementById("praatstijl").value; eigenStijl = document.getElementById("eigenStijl").value; geheugenAan = document.getElementById("geheugenAan").value; thema = document.getElementById("thema").value; animaties = document.getElementById("animaties").value; accentkleur = document.getElementById("accentkleur").value; localStorage.setItem("abdulxPraatstijl", praatstijl); localStorage.setItem("abdulxEigenStijl", eigenStijl); localStorage.setItem("abdulxGeheugenAan", geheugenAan); localStorage.setItem("abdulxThema", thema); localStorage.setItem("abdulxAnimaties", animaties); localStorage.setItem("abdulxKleur", accentkleur); pasUiterlijkAan(); sluitModal("instellingenModal"); alert("Instellingen opgeslagen ✅"); } function pasUiterlijkAan(){ document.body.classList.remove( "theme-galaxy", "theme-dark", "theme-light", "no-animations" ); document.body.classList.add("theme-" + thema); if(animaties === "uit"){ document.body.classList.add("no-animations"); } if(accentkleur === "blauw"){ document.documentElement.style.setProperty( "--accent","#6ea8ff" ); document.documentElement.style.setProperty( "--accent2","#9b7cff" ); } if(accentkleur === "paars"){ document.documentElement.style.setProperty( "--accent","#a875ff" ); document.documentElement.style.setProperty( "--accent2","#e06cff" ); } if(accentkleur === "wit"){ document.documentElement.style.setProperty( "--accent","#ffffff" ); document.documentElement.style.setProperty( "--accent2","#bfc7d9" ); } } function voegBerichtToe(tekst,type){ const welcome = document.getElementById("welcome"); if(welcome){ welcome.remove(); } const chat = document.getElementById("chat"); const message = document.createElement("div"); message.className = "message " + type; const content = document.createElement("div"); content.className = "message-content"; content.textContent = tekst; message.appendChild(content); chat.appendChild(message); chat.scrollTop = chat.scrollHeight; } /* ========================= AI VIA VERCEL ========================= */ async function stuurVraag(){ const input = document.getElementById("vraag"); const vraag = input.value.trim(); if(!vraag) return; voegBerichtToe(vraag,"user"); huidigGesprek.push({ rol:"user", tekst:vraag }); input.value = ""; voegBerichtToe( "AbdulX is aan het denken...", "ai" ); const systemPrompt = Je bent AbdulX. Antwoord altijd in het Nederlands. ${krijgPraatstijl()} ${geheugenAan === "aan" ? "Gebruik deze geheugeninformatie als context: " + geheugen : ""} ; try{ const response = await fetch("/api/chat",{ method:"POST", headers:{ "Content-Type":"application/json" }, body:JSON.stringify({ message:vraag, systemPrompt:systemPrompt }) }); const data = await response.json(); if(!response.ok){ throw new Error( data.error || "AI-fout" ); } const antwoord = data.reply || "Ik kreeg geen antwoord."; const berichten = document.querySelectorAll( ".message.ai" ); const laatste = berichten[berichten.length - 1]; if(laatste){ laatste .querySelector(".message-content") .textContent = antwoord; } huidigGesprek.push({ rol:"ai", tekst:antwoord }); slaGesprekOp(); }catch(error){ console.error(error); const berichten = document.querySelectorAll( ".message.ai" ); const laatste = berichten[berichten.length - 1]; if(laatste){ laatste .querySelector(".message-content") .textContent = "❌ Er ging iets mis met AbdulX: " + error.message; } } } function idee(tekst){ document.getElementById("vraag").value = tekst; stuurVraag(); } function nieuweChat(){ huidigGesprek = []; document.getElementById("chat").innerHTML = <div class="welcome" id="welcome"> <div class="big-logo"> A.O. </div> <h1> Hallo, ik ben AbdulX 👋 </h1> <p> Waar kan ik je mee helpen? 😎 </p> <div class="ideas"> <button class="idea" onclick="idee('Help mij met mijn huiswerk')"> 📚<br>Huiswerk </button> <button class="idea" onclick="idee('Geef mij een goed idee')"> 💡<br>Ideeën </button> <button class="idea" onclick="idee('Help mij met coderen')"> 💻<br>Coderen </button> <button class="idea" onclick="idee('Help mij een tekst schrijven')"> ✍️<br>Tekst schrijven </button> </div> </div> ; } function slaGesprekOp(){ if(huidigGesprek.length === 0) return; const titel = huidigGesprek[0]?.tekst || "Nieuw gesprek"; const gesprek = { id:Date.now(), titel:titel.substring(0,50), berichten:huidigGesprek, datum:new Date() .toLocaleString("nl-NL") }; gesprekken.unshift(gesprek); gesprekken = gesprekken.slice(0,30); localStorage.setItem( "abdulxGesprekken", JSON.stringify(gesprekken) ); } function toonGesprekken(){ const lijst = document.getElementById( "gesprekkenLijst" ); if(gesprekken.length === 0){ lijst.innerHTML = "Nog geen gesprekken."; }else{ lijst.innerHTML = gesprekken.map(g => <div class="conversation" onclick="laadGesprek(${g.id})"> <b>${escapeHtml(g.titel)}</b> <div style=" color:var(--muted); font-size:12px; margin-top:5px; "> ${g.datum} </div> </div> ).join(""); } document .getElementById("gesprekkenModal") .classList.add("show"); } function laadGesprek(id){ const gesprek = gesprekken.find( g => g.id === id ); if(!gesprek) return; sluitModal("gesprekkenModal"); huidigGesprek = gesprek.berichten || []; document.getElementById("chat").innerHTML = ""; huidigGesprek.forEach(bericht => { voegBerichtToe( bericht.tekst, bericht.rol === "user" ? "user" : "ai" ); }); } function toonZoeken(){ document .getElementById("zoekenModal") .classList.add("show"); document .getElementById("zoekInput") .focus(); } function zoekGesprekken(){ const zoek = document .getElementById("zoekInput") .value .toLowerCase() .trim(); const resultaten = document.getElementById( "zoekResultaten" ); if(!zoek){ resultaten.innerHTML = ""; return; } const gevonden = gesprekken.filter(g => JSON.stringify(g) .toLowerCase() .includes(zoek) ); if(gevonden.length === 0){ resultaten.innerHTML = "Geen gesprekken gevonden."; return; } resultaten.innerHTML = gevonden.map(g => <div class="search-result" onclick=" laadGesprek(${g.id}); sluitModal('zoekenModal') "> <b>${escapeHtml(g.titel)}</b> <div style=" color:var(--muted); font-size:12px; "> ${g.datum} </div> </div> ).join(""); } function toonGeheugen(){ document.getElementById( "memoryContent" ).textContent = geheugen || "Nog geen geheugen opgeslagen."; document .getElementById("geheugenModal") .classList.add("show"); } function toonProfiel(){ document.getElementById( "profielNaam" ).value = profiel.naam; document.getElementById( "profielBio" ).value = profiel.bio; document .getElementById("profielModal") .classList.add("show"); } function profielOpslaan(){ profiel = { naam: document .getElementById("profielNaam") .value .trim() || "Abdul", bio: document .getElementById("profielBio") .value .trim() }; localStorage.setItem( "abdulxProfiel", JSON.stringify(profiel) ); profielBijwerken(); sluitModal("profielModal"); } function profielBijwerken(){ document.getElementById( "profileName" ).textContent = profiel.naam; document.getElementById( "profileAvatar" ).textContent = profiel.naam .charAt(0) .toUpperCase(); } function bestandKiezen(){ document .getElementById("fileInput") .click(); } function bestandGekozenInfo(){ const file = document .getElementById("fileInput") .files[0]; if(!file) return; const info = document.getElementById( "bestandInfo" ); if(file.type.startsWith("image/")){ const url = URL.createObjectURL(file); info.innerHTML = <p>🖼️ ${escapeHtml(file.name)}</p> <img src="${url}" style=" max-width:100%; max-height:350px; margin-top:15px; border-radius:14px; " > <p style=" color:var(--muted); margin-top:10px; "> Fotoanalyse wordt later toegevoegd. </p> ; }else{ info.innerHTML = <p> 📄 <b>${escapeHtml(file.name)}</b> </p> <p style=" color:var(--muted); margin-top:10px; "> Grootte: ${(file.size / 1024).toFixed(1)} KB </p> <p style=" color:var(--muted); margin-top:10px; "> Documentanalyse wordt later toegevoegd. </p> ; } document .getElementById("bestandModal") .classList.add("show"); } function spraakStarten(){ if( !("webkitSpeechRecognition" in window) && !("SpeechRecognition" in window) ){ alert( "Spraakherkenning wordt niet ondersteund." ); return; } const Recognition = window.SpeechRecognition || window.webkitSpeechRecognition; const recognition = new Recognition(); recognition.lang = "nl-NL"; recognition.start(); recognition.onresult = function(event){ const tekst = event.results[0][0] .transcript; document.getElementById( "vraag" ).value = tekst; }; } function sluitModal(id){ document .getElementById(id) .classList.remove("show"); } function escapeHtml(text){ return String(text) .replace(/&/g,"&amp;") .replace(/</g,"&lt;") .replace(/>/g,"&gt;") .replace(/"/g,"&quot;") .replace(/'/g,"&#039;"); } pasUiterlijkAan(); profielBijwerken(); </script> </body> </html>
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AbdulX</title>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:#080b12;
+  color:#fff;
+  height:100vh;
+  overflow:hidden;
+}
+.app{display:flex;height:100vh}
+
+.sidebar{
+  width:255px;
+  background:#0d111a;
+  border-right:1px solid #222936;
+  padding:18px;
+  display:flex;
+  flex-direction:column;
+}
+
+.logo{
+  font-size:25px;
+  font-weight:800;
+  margin-bottom:30px;
+}
+.logo span{color:#7585ff}
+
+.nav button{
+  width:100%;
+  background:transparent;
+  color:#b9bfcc;
+  border:0;
+  padding:13px;
+  text-align:left;
+  border-radius:10px;
+  margin-bottom:5px;
+  cursor:pointer;
+  font-size:15px;
+}
+.nav button:hover{
+  background:#171d29;
+  color:white;
+}
+
+.account{
+  margin-top:auto;
+  color:#777f90;
+  font-size:13px;
+}
+
+.main{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+}
+
+.header{
+  height:68px;
+  border-bottom:1px solid #222936;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 25px;
+}
+
+.header h2{font-size:20px}
+.profile{
+  background:#171d29;
+  padding:9px 15px;
+  border-radius:20px;
+  color:#ddd;
+}
+
+.chat{
+  flex:1;
+  overflow-y:auto;
+  padding:35px 20px;
+}
+
+.welcome{
+  text-align:center;
+  margin:10vh auto 30px;
+  max-width:750px;
+}
+
+.welcome h1{
+  font-size:43px;
+  margin-bottom:13px;
+}
+.welcome p{color:#8e96a6}
+
+.ideas{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:28px;
+}
+
+.idea{
+  background:#111722;
+  color:#dce1eb;
+  border:1px solid #293140;
+  padding:12px 16px;
+  border-radius:12px;
+  cursor:pointer;
+}
+.idea:hover{background:#1a2130}
+
+.messages{
+  width:100%;
+  max-width:850px;
+  margin:auto;
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+
+.message{
+  max-width:82%;
+  padding:14px 17px;
+  border-radius:15px;
+  line-height:1.5;
+  white-space:pre-wrap;
+}
+
+.user{
+  align-self:flex-end;
+  background:#30394d;
+}
+
+.ai{
+  align-self:flex-start;
+  background:#111722;
+  border:1px solid #28303e;
+}
+
+.input-area{
+  padding:18px 20px;
+}
+
+.input-box{
+  max-width:850px;
+  margin:auto;
+  background:#111722;
+  border:1px solid #293140;
+  border-radius:17px;
+  display:flex;
+  padding:7px;
+}
+
+textarea{
+  flex:1;
+  resize:none;
+  height:48px;
+  background:transparent;
+  border:0;
+  outline:0;
+  color:white;
+  padding:13px;
+  font-size:15px;
+}
+
+.send{
+  width:45px;
+  height:45px;
+  border:0;
+  border-radius:12px;
+  background:#7585ff;
+  color:white;
+  cursor:pointer;
+  font-size:18px;
+}
+
+.send:hover{background:#6173ff}
+
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.7);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:20;
+}
+
+.modal-box{
+  width:90%;
+  max-width:600px;
+  max-height:85vh;
+  overflow:auto;
+  background:#10151f;
+  border:1px solid #293140;
+  border-radius:20px;
+  padding:25px;
+}
+
+.modal-box h2{margin-bottom:20px}
+
+.close{
+  float:right;
+  background:#202735;
+  color:white;
+  border:0;
+  border-radius:8px;
+  padding:7px 11px;
+  cursor:pointer;
+}
+
+.setting{
+  padding:15px 0;
+  border-bottom:1px solid #242b38;
+}
+
+.setting-title{
+  font-weight:bold;
+  margin-bottom:9px;
+}
+
+select,input{
+  width:100%;
+  background:#171d29;
+  color:white;
+  border:1px solid #303847;
+  padding:11px;
+  border-radius:9px;
+  outline:none;
+}
+
+.checkbox{
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
+
+.checkbox input{width:auto}
+
+#searchInput{
+  margin-bottom:15px;
+}
+
+@media(max-width:700px){
+  .sidebar{display:none}
+  .welcome h1{font-size:32px}
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<aside class="sidebar">
+
+  <div class="logo">A.<span>X</span></div>
+
+  <div class="nav">
+    <button onclick="newChat()">＋ Nieuwe chat</button>
+    <button onclick="openModal('searchModal')">⌕ Zoeken</button>
+    <button onclick="openConversations()">◷ Gesprekken</button>
+    <button onclick="openModal('memoryModal')">♧ Geheugen</button>
+    <button onclick="openModal('settingsModal')">⚙ Instellingen</button>
+  </div>
+
+  <div class="account">
+    AbdulX • AI
+  </div>
+
+</aside>
+
+<main class="main">
+
+<header class="header">
+  <h2>AbdulX</h2>
+  <div class="profile">Abdul</div>
+</header>
+
+<section class="chat" id="chat">
+
+  <div class="welcome" id="welcome">
+    <h1>Hallo, ik ben AbdulX 👋</h1>
+    <p>Waar kan ik je vandaag mee helpen?</p>
+
+    <div class="ideas">
+      <button class="idea" onclick="useIdea('Leg iets simpel uit')">
+        💡 Leg iets simpel uit
+      </button>
+
+      <button class="idea" onclick="useIdea('Help mij met school')">
+        📚 Help met school
+      </button>
+
+      <button class="idea" onclick="useIdea('Geef mij een idee')">
+        🚀 Geef mij een idee
+      </button>
+    </div>
+  </div>
+
+  <div class="messages" id="messages"></div>
+
+</section>
+
+<div class="input-area">
+  <div class="input-box">
+
+    <textarea
+      id="message"
+      placeholder="Vraag iets aan AbdulX..."
+      onkeydown="handleKey(event)"
+    ></textarea>
+
+    <button class="send" onclick="sendMessage()">➤</button>
+
+  </div>
+</div>
+
+</main>
+</div>
+
+
+<!-- INSTELLINGEN -->
+
+<div class="modal" id="settingsModal">
+<div class="modal-box">
+
+<button class="close" onclick="closeModal('settingsModal')">✕</button>
+
+<h2>⚙️ Instellingen</h2>
+
+<div class="setting">
+<div class="setting-title">Praatstijl</div>
+
+<select id="styleSelect" onchange="saveSettings()">
+<option value="normaal">Normaal</option>
+<option value="losjes">Losjes</option>
+<option value="slim">Slim</option>
+<option value="school">School</option>
+<option value="professioneel">Professioneel</option>
+<option value="grappig">Grappig</option>
+<option value="kort">Kort</option>
+<option value="agressief">Agressief</option>
+<option value="eigen">Eigen stijl</option>
+</select>
+</div>
+
+<div class="setting">
+<div class="setting-title">Eigen stijl</div>
+
+<input
+id="customStyle"
+placeholder="Bijvoorbeeld: praat als een grappige vriend"
+oninput="saveSettings()">
+</div>
+
+<div class="setting">
+<div class="setting-title">Geheugen</div>
+
+<label class="checkbox">
+<input type="checkbox" id="memoryEnabled" onchange="saveSettings()">
+Geheugen gebruiken
+</label>
+</div>
+
+<div class="setting">
+<div class="setting-title">Animaties</div>
+
+<label class="checkbox">
+<input type="checkbox" id="animations" checked onchange="saveSettings()">
+Animaties aan
+</label>
+</div>
+
+<div class="setting">
+<div class="setting-title">Thema</div>
+
+<select id="themeSelect" onchange="changeTheme()">
+<option value="dark">Donker</option>
+<option value="darker">Extra donker</option>
+</select>
+</div>
+
+</div>
+</div>
+
+
+<!-- GEHEUGEN -->
+
+<div class="modal" id="memoryModal">
+<div class="modal-box">
+
+<button class="close" onclick="closeModal('memoryModal')">✕</button>
+
+<h2>♧ Geheugen</h2>
+
+<p id="memoryText" style="color:#aaa;margin-bottom:20px">
+Nog geen opgeslagen geheugen.
+</p>
+
+<button
+class="idea"
+onclick="clearMemory()">
+Geheugen wissen
+</button>
+
+</div>
+</div>
+
+
+<!-- GESPREKKEN -->
+
+<div class="modal" id="conversationModal">
+<div class="modal-box">
+
+<button class="close" onclick="closeModal('conversationModal')">✕</button>
+
+<h2>◷ Gesprekken</h2>
+
+<div id="conversationList"></div>
+
+</div>
+</div>
+
+
+<!-- ZOEKEN -->
+
+<div class="modal" id="searchModal">
+<div class="modal-box">
+
+<button class="close" onclick="closeModal('searchModal')">✕</button>
+
+<h2>⌕ Zoeken</h2>
+
+<input
+id="searchInput"
+placeholder="Zoek in je gesprekken..."
+oninput="searchConversations()">
+
+<div id="searchResults"></div>
+
+</div>
+</div>
+
+
+<script>
+
+const input = document.getElementById("message");
+const messages = document.getElementById("messages");
+const welcome = document.getElementById("welcome");
+
+let conversations =
+JSON.parse(localStorage.getItem("abdulxGesprekken") || "[]");
+
+let currentConversation = [];
+
+
+/* INSTELLINGEN */
+
+const styleSelect = document.getElementById("styleSelect");
+const customStyle = document.getElementById("customStyle");
+const memoryEnabled = document.getElementById("memoryEnabled");
+const animations = document.getElementById("animations");
+const themeSelect = document.getElementById("themeSelect");
+
+styleSelect.value =
+localStorage.getItem("abdulxPraatstijl") || "normaal";
+
+customStyle.value =
+localStorage.getItem("abdulxEigenStijl") || "";
+
+memoryEnabled.checked =
+localStorage.getItem("abdulxGeheugenAan") === "true";
+
+animations.checked =
+localStorage.getItem("abdulxAnimaties") !== "false";
+
+themeSelect.value =
+localStorage.getItem("abdulxThema") || "dark";
+
+
+function saveSettings(){
+
+  localStorage.setItem(
+    "abdulxPraatstijl",
+    styleSelect.value
+  );
+
+  localStorage.setItem(
+    "abdulxEigenStijl",
+    customStyle.value
+  );
+
+  localStorage.setItem(
+    "abdulxGeheugenAan",
+    memoryEnabled.checked
+  );
+
+  localStorage.setItem(
+    "abdulxAnimaties",
+    animations.checked
+  );
+}
+
+
+function changeTheme(){
+
+  localStorage.setItem(
+    "abdulxThema",
+    themeSelect.value
+  );
+
+  if(themeSelect.value === "darker"){
+    document.body.style.background = "#030407";
+  }else{
+    document.body.style.background = "#080b12";
+  }
+}
+
+
+/* MODALS */
+
+function openModal(id){
+  document.getElementById(id).style.display = "flex";
+}
+
+function closeModal(id){
+  document.getElementById(id).style.display = "none";
+}
+
+
+/* CHAT */
+
+function handleKey(e){
+
+  if(e.key === "Enter" && !e.shiftKey){
+    e.preventDefault();
+    sendMessage();
+  }
+}
+
+
+function useIdea(text){
+  input.value = text;
+  sendMessage();
+}
+
+
+function addMessage(text,type){
+
+  const div = document.createElement("div");
+
+  div.className = "message " + type;
+
+  div.textContent = text;
+
+  messages.appendChild(div);
+
+  document.getElementById("chat").scrollTop =
+  document.getElementById("chat").scrollHeight;
+}
+
+
+function getStyle(){
+
+  const style = styleSelect.value;
+
+  if(style === "losjes")
+    return "Praat losjes en vriendelijk.";
+
+  if(style === "slim")
+    return "Geef slimme, duidelijke en goed uitgelegde antwoorden.";
+
+  if(style === "school")
+    return "Leg dingen simpel uit op ongeveer middelbare-schoolniveau.";
+
+  if(style === "professioneel")
+    return "Praat professioneel en netjes.";
+
+  if(style === "grappig")
+    return "Wees grappig en luchtig, zonder gemeen tegen echte mensen te zijn.";
+
+  if(style === "kort")
+    return "Geef zeer korte en duidelijke antwoorden.";
+
+  if(style === "agressief")
+    return "Praat brutaal, direct en uitdagend. Je mag lichte speelse scheldwoorden gebruiken zoals 'sukkel' of 'ezel' wanneer dat duidelijk als grap bedoeld is. Beledig geen echte groepen of personen op een bedreigende of haatdragende manier.";
+
+  if(style === "eigen")
+    return customStyle.value;
+
+  return "Praat normaal, vriendelijk en duidelijk.";
+}
+
+
+async function sendMessage(){
+
+  const message = input.value.trim();
+
+  if(!message) return;
+
+  welcome.style.display = "none";
+
+  addMessage(message,"user");
+
+  currentConversation.push({
+    role:"user",
+    content:message
+  });
+
+  input.value = "";
+
+  const thinking = document.createElement("div");
+
+  thinking.className = "message ai";
+  thinking.textContent = "AbdulX is aan het denken...";
+
+  messages.appendChild(thinking);
+
+  try{
+
+    const systemPrompt =
+      "Je bent AbdulX, een behulpzame AI. " +
+      "Antwoord altijd in het Nederlands. " +
+      getStyle();
+
+    const response = await fetch("/api/chat",{
+
+      method:"POST",
+
+      headers:{
+        "Content-Type":"application/json"
+      },
+
+      body:JSON.stringify({
+        message:message,
+        systemPrompt:systemPrompt
+      })
+
+    });
+
+    const data = await response.json();
+
+    thinking.remove();
+
+    if(!response.ok){
+
+      addMessage(
+        data.error || "Er ging iets mis met AbdulX.",
+        "ai"
+      );
+
+      return;
+    }
+
+    addMessage(data.reply,"ai");
+
+    currentConversation.push({
+      role:"assistant",
+      content:data.reply
+    });
+
+    saveConversation();
+
+  }catch(error){
+
+    thinking.remove();
+
+    addMessage(
+      "Ik kan AbdulX momenteel niet bereiken.",
+      "ai"
+    );
+  }
+}
+
+
+/* NIEUWE CHAT */
+
+function newChat(){
+
+  if(currentConversation.length > 0){
+    saveConversation();
+  }
+
+  messages.innerHTML = "";
+
+  currentConversation = [];
+
+  welcome.style.display = "block";
+}
+
+
+/* GESPREKKEN OPSLAAN */
+
+function saveConversation(){
+
+  if(currentConversation.length === 0) return;
+
+  conversations.push({
+    date:new Date().toLocaleString("nl-NL"),
+    messages:currentConversation
+  });
+
+  if(conversations.length > 30){
+    conversations.shift();
+  }
+
+  localStorage.setItem(
+    "abdulxGesprekken",
+    JSON.stringify(conversations)
+  );
+}
+
+
+/* GESPREKKEN */
+
+function openConversations(){
+
+  const list =
+  document.getElementById("conversationList");
+
+  list.innerHTML = "";
+
+  if(conversations.length === 0){
+
+    list.innerHTML =
+      "<p style='color:#888'>Nog geen gesprekken.</p>";
+
+  }else{
+
+    conversations.slice().reverse().forEach((conversation,index)=>{
+
+      const button =
+      document.createElement("button");
+
+      button.className = "idea";
+      button.style.width = "100%";
+      button.style.textAlign = "left";
+      button.style.marginBottom = "8px";
+
+      const first =
+      conversation.messages.find(
+        x => x.role === "user"
+      );
+
+      button.textContent =
+        (first ? first.content : "Gesprek") +
+        " • " +
+        conversation.date;
+
+      button.onclick = () => {
+
+        messages.innerHTML = "";
+
+        welcome.style.display = "none";
+
+        conversation.messages.forEach(msg => {
+
+          addMessage(
+            msg.content,
+            msg.role === "user" ? "user" : "ai"
+          );
+
+        });
+
+        closeModal("conversationModal");
+      };
+
+      list.appendChild(button);
+    });
+  }
+
+  openModal("conversationModal");
+}
+
+
+/* ZOEKEN */
+
+function searchConversations(){
+
+  const query =
+    document.getElementById("searchInput")
+    .value
+    .toLowerCase();
+
+  const results =
+    document.getElementById("searchResults");
+
+  results.innerHTML = "";
+
+  if(!query) return;
+
+  conversations.forEach(conversation => {
+
+    conversation.messages.forEach(msg => {
+
+      if(msg.content.toLowerCase().includes(query)){
+
+        const p =
+        document.createElement("p");
+
+        p.style.padding = "10px 0";
+        p.style.color = "#bbb";
+
+        p.textContent = msg.content;
+
+        results.appendChild(p);
+      }
+
+    });
+
+  });
+}
+
+
+/* GEHEUGEN */
+
+function updateMemory(){
+
+  const memory =
+    localStorage.getItem("abdulxGeheugen");
+
+  document.getElementById("memoryText").textContent =
+    memory || "Nog geen opgeslagen geheugen.";
+}
+
+function clearMemory(){
+
+  localStorage.removeItem("abdulxGeheugen");
+
+  updateMemory();
+}
+
+updateMemory();
+
+changeTheme();
+
+</script>
+
+</body>
+</html>
